@@ -2,6 +2,19 @@ const express = require("express");
 const router = express.Router();
 const productModel = require("../Models/productModel");
 
+// At the top of your router file
+const dummyProducts = require('../dummyProducts'); // or paste the array directly
+
+// Replace the DB call with dummy data
+router.get("/", async (req, res) => {
+  try {
+    return res.status(200).json(dummyProducts); // <-- using dummy array
+  } catch (e) {
+    return res.status(500).json({ message: e.message });
+  }
+});
+
+
 // * Get all products
 router.get("/", async (req, res) => {
   try {
